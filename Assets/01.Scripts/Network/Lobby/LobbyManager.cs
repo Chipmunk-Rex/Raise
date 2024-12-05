@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -5,11 +6,12 @@ using Unity.Netcode;
 using Unity.Services.Authentication;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
+using UnityEditor.Localization.Plugins.XLIFF.V12;
 using UnityEngine;
 
 public class LobbyManager : MonoSingleton<LobbyManager>
 {
-    [SerializeField] LobbySettingSO lobbySettingSO;
+    [field: SerializeField] public LobbySettingSO LobbySettingSO { get; private set; }
     // private string lobbyID;
     public string LobbyCode => currentLobby?.LobbyCode;
     public string LobbyID => currentLobby?.Id;
@@ -21,36 +23,41 @@ public class LobbyManager : MonoSingleton<LobbyManager>
         {
             QueryLobbiesOptions queryLobbiesOptions = new QueryLobbiesOptions
             {
-                Count = 10,
-                Filters = new List<QueryFilter>{
-                    new QueryFilter(QueryFilter.FieldOptions.AvailableSlots, "0", QueryFilter.OpOptions.GT),
-                }
+                Count = 10
             };
+            List<Lobby> lobbyList = await GetLobbiesAsync(queryLobbiesOptions);
 
-            QueryResponse queryResponse = await Lobbies.Instance.QueryLobbiesAsync(queryLobbiesOptions);
-
-            List<Lobby> lobbyList = new();
-            int Count = 0;
-            foreach (Lobby lobby in queryResponse.Results)
-            {
-                Count += 1;
-                if (Count == 100)
-                    return null;
-                lobbyList.Add(lobby);
-            }
-            Debug.Log($"LobbyManager : 감지된 로비 개수{lobbyList.Count}");
             return lobbyList;
         }
-        catch
+        catch (Exception e)
         {
-
+            Debug.Log(e);
         }
         return null;
     }
+    public async Task<List<Lobby>> GetLobbiesAsync(QueryLobbiesOptions queryOption)
+    {
+        QueryResponse queryResponse = await Lobbies.Instance.QueryLobbiesAsync(queryOption);
+
+        List<Lobby> lobbyList = new();
+        foreach (Lobby lobby in queryResponse.Results)
+        {
+            lobbyList.Add(lobby);
+        }
+        Debug.Log($"LobbyManager : 감지된 로비 개수{lobbyList.Count}");
+        return lobbyList;
+    }
     public async void CreateLobby(string lobbyName, int maxPlayers, bool isPrivate = false, string password = null)
     {
-        maxPlayers = Mathf.Clamp(maxPlayers, 1, (int)lobbySettingSO.maxPlayers);
-        currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, new CreateLobbyOptions { IsPrivate = isPrivate, Password = password });
+        Debug.Log("CreateLobby");
+        maxPlayers = Mathf.Clamp(maxPlayers, 1, (int)LobbySettingSO.maxPlayers);
+        if (password == null || password.Length < 8)
+            currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, new CreateLobbyOptions { IsPrivate = isPrivate });
+        else
+            currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, new CreateLobbyOptions { IsPrivate = isPrivate, Password = password });
+
+        Debug.Log(currentLobby);
+        // currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, new CreateLobbyOptions { IsPrivate = isPrivate, Password = password });
         StartLobbyHeartBeat();
     }
     public async void JoinLobbyById(string lobbyID)
@@ -77,16 +84,16 @@ public class LobbyManager : MonoSingleton<LobbyManager>
     }
     public void StartLobbyHeartBeat()
     {
-        StartCoroutine(LobbyHeartBeat(lobbySettingSO.heartBeatDuration));
+        StartCoroutine(LobbyHeartBeat(LobbySettingSO.heartBeatDuration));
     }
     private IEnumerator LobbyHeartBeat(float duration)
     {
         while (true)
         {
-            yield return new WaitForSecondsRealtime(lobbySettingSO.heartBeatDuration);
             if (currentLobby == null)
                 break;
             Lobbies.Instance.SendHeartbeatPingAsync(LobbyID);
+            yield return new WaitForSecondsRealtime(LobbySettingSO.heartBeatDuration);
         }
     }
 }
