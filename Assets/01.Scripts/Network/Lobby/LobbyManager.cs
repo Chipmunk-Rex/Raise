@@ -47,10 +47,10 @@ public class LobbyManager : MonoSingleton<LobbyManager>
         }
         return null;
     }
-    public async void CreateLobby(string lobbyName, int maxPlayers)
+    public async void CreateLobby(string lobbyName, int maxPlayers, bool isPrivate = false, string password = null)
     {
         maxPlayers = Mathf.Clamp(maxPlayers, 1, (int)lobbySettingSO.maxPlayers);
-        currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers);
+        currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, new CreateLobbyOptions { IsPrivate = isPrivate, Password = password });
         StartLobbyHeartBeat();
     }
     public async void JoinLobbyById(string lobbyID)

@@ -8,13 +8,13 @@ public class RoomListUI : MonoBehaviour
     [SerializeField] private RoomUI roomPrefab;
     [SerializeField] private Transform roomListContent;
 
-    public void DrawUI()
+    public async void DrawUI()
     {
         foreach (Transform child in roomListContent)
         {
             Destroy(child.gameObject);
         }
-        List<Lobby> lobbies = LobbyManager.Instance.GetLobbiesAsync().Result;
+        List<Lobby> lobbies = await LobbyManager.Instance.GetLobbiesAsync();
         if (lobbies != null)
             foreach (Lobby lobby in lobbies)
             {
