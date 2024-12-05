@@ -1592,7 +1592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomPrefab: {fileID: 4456552352291640216, guid: 231e656430fa4be4cbae8f96569a6903, type: 3}
   roomListContent: {fileID: 577690647}
-  searchField: {fileID: 34367609}
+  searchField: {fileID: 0}
 --- !u!1 &368183012
 GameObject:
   m_ObjectHideFlags: 0
@@ -2984,19 +2984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnInitialized:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1696282129}
-        m_TargetAssemblyTypeName: AnonymousAuthentication, Assembly-CSharp
-        m_MethodName: TryAuth
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!4 &732080091
 Transform:
   m_ObjectHideFlags: 0
@@ -3069,10 +3057,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Name
+  m_text: Raise
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2100000, guid: e73a58f6e2794ae7b1b7e50b7fb811b0, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3080,13 +3068,13 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
   m_fontColor: {r: 1, g: 1, b: 1, a: 1}
-  m_enableVertexGradient: 0
+  m_enableVertexGradient: 1
   m_colorMode: 3
   m_fontColorGradient:
     topLeft: {r: 1, g: 1, b: 1, a: 1}
-    topRight: {r: 1, g: 1, b: 1, a: 1}
-    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
-    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 0.7176471, g: 0.7176471, b: 0.7176471, a: 1}
+    bottomLeft: {r: 0.7169812, g: 0.7169812, b: 0.7169812, a: 1}
+    bottomRight: {r: 0.16470589, g: 0.16470589, b: 0.16470589, a: 1}
   m_fontColorGradientPreset: {fileID: 0}
   m_spriteAsset: {fileID: 0}
   m_tintAllSprites: 0
@@ -3096,15 +3084,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
-  m_fontSizeBase: 100
+  m_fontSize: 150
+  m_fontSizeBase: 150
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
-  m_VerticalAlignment: 256
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -3413,7 +3401,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDontDestroy: 1
-  <LobbySettingSO>k__BackingField: {fileID: 11400000, guid: 3ea0160f01e9237419d3cfd1d0d94742, type: 2}
+  <LobbySettingSO>k__BackingField: {fileID: 0}
 --- !u!4 &829977580
 Transform:
   m_ObjectHideFlags: 0
@@ -5438,7 +5426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   roomName: {fileID: 1065604516}
   maxPlayers: {fileID: 1272046895}
-  maxPlayersText: {fileID: 2021747476}
+  maxPlayersText: {fileID: 0}
   isPrivate: {fileID: 1982147178}
   password: {fileID: 1769401064}
 --- !u!1 &1430210150
