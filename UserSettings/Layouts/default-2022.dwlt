@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1920
     height: 989
   m_ShowMode: 4
-  m_Title: Game
+  m_Title: Hierarchy
   m_RootView: {fileID: 2}
   m_MinSize: {x: 875, y: 321}
   m_MaxSize: {x: 10000, y: 10000}
@@ -2385,18 +2385,18 @@ MonoBehaviour:
     m_ExpandedInstanceIDs: c6230000166d00000e770000a6610000a461000000000000dc710000aa720000ee620000a061000070720000fc79000040810000d2830000b67d000020810000e87f0000a27800000e840000ea98000092f80000667a0000447f00002e8a0000f6780000687a0000b0ebfeff12800000d47a0000f287ffff7685ffff7881ffffb27e000070790000308c00004c7900007ea2000040850000488700000e7c0000ce7b0000947c000070990000a6800000a48000009a7c00005cc90000d27d000082870000be880000689a0000cca00000fc8a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: UI
+      m_OriginalName: UI
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 45678
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 11}
     m_CreateAssetUtility:
