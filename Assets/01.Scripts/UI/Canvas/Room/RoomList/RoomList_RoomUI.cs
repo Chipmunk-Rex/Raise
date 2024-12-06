@@ -7,7 +7,7 @@ using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class RoomUI : MonoBehaviour
+public class RoomList_RoomUI : MonoBehaviour
 {
     [SerializeField] Image borderImage;
     [SerializeField] Color joinedRoomColor;

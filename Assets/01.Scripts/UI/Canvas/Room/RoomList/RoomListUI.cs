@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class RoomListUI : MonoBehaviour
 {
-    [SerializeField] private RoomUI roomPrefab;
+    [SerializeField] private RoomList_RoomUI roomPrefab;
     [SerializeField] private Transform roomListContent;
     [SerializeField] private TMP_InputField searchField;
     public async void DrawUI()
@@ -29,7 +29,7 @@ public class RoomListUI : MonoBehaviour
         if (lobbies != null)
             foreach (Lobby lobby in lobbies)
             {
-                RoomUI roomUI = Instantiate(roomPrefab, roomListContent);
+                RoomList_RoomUI roomUI = Instantiate(roomPrefab, roomListContent);
                 roomUI.DrawUI(lobby);
             }
     }
