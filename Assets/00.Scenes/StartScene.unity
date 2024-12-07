@@ -4213,7 +4213,7 @@ GameObject:
   - component: {fileID: 848590684}
   - component: {fileID: 848590685}
   m_Layer: 5
-  m_Name: RoomList UI (1)
+  m_Name: Room UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4252,12 +4252,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 848590683}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fc7388e510c1c54c8caab41959ec9e1, type: 3}
+  m_Script: {fileID: 11500000, guid: dac2da1edd0091d44924335547a97c95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomPrefab: {fileID: 4456552352291640216, guid: 231e656430fa4be4cbae8f96569a6903, type: 3}
-  roomListContent: {fileID: 513965425}
-  searchField: {fileID: 0}
+  playerUIPrefab: {fileID: 0}
 --- !u!1 &856036214
 GameObject:
   m_ObjectHideFlags: 0
@@ -4475,7 +4473,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 848590685}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: RoomListUI, Assembly-CSharp
         m_MethodName: DrawUI
         m_Mode: 1
