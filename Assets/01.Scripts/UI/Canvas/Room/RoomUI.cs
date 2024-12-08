@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TMPro;
 using Unity.Services.Lobbies;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
 
 public class RoomUI : MonoBehaviour
 {
+    [SerializeField] TMP_Text lobbyName;
     [SerializeField] Room_PlayerUI playerUIPrefab;
     [SerializeField] Transform playerListContent;
 
@@ -52,6 +54,8 @@ public class RoomUI : MonoBehaviour
         DestroyExistUI();
         CreateUI(lobby);
         DrawingLobby = lobby;
+
+        lobbyName.text = lobby.Name;
     }
 
     private void CreateUI(Lobby lobby)
