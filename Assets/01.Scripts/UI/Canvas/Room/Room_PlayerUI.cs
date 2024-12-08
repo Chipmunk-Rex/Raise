@@ -20,6 +20,7 @@ public class Room_PlayerUI : MonoBehaviour
         if (player.Profile == null)
         {
             Debug.LogError("Player Profile is null");
+            // ??? 뭥미
         }
         playerName.text = player.Profile?.Name;
         if (player.Data.TryGetValue("profileImage", out PlayerDataObject value))

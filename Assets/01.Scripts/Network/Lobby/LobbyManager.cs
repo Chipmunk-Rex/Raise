@@ -17,6 +17,8 @@ public class LobbyManager : MonoSingleton<LobbyManager>
     public string LobbyID => currentLobby?.Id;
     private Lobby currentLobby;
     public Lobby CurrentLobby => currentLobby;
+    private Player player;
+    public Player Player { get; set; }
     public async Task<List<Lobby>> GetLobbiesAsync()
     {
         try
@@ -52,21 +54,28 @@ public class LobbyManager : MonoSingleton<LobbyManager>
         Debug.Log("CreateLobby");
         maxPlayers = Mathf.Clamp(maxPlayers, 1, (int)LobbySettingSO.maxPlayers);
         if (password == null || password.Length < 8)
-            currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, new CreateLobbyOptions { IsPrivate = isPrivate });
+            currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, new CreateLobbyOptions { IsPrivate = isPrivate, Player = this.Player });
         else
-            currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, new CreateLobbyOptions { IsPrivate = isPrivate, Password = password });
+            currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, new CreateLobbyOptions { IsPrivate = isPrivate, Player = this.Player, Password = password });
 
         Debug.Log(currentLobby);
-        // currentLobby = await Lobbies.Instance.CreateLobbyAsync(lobbyName, maxPlayers, new CreateLobbyOptions { IsPrivate = isPrivate, Password = password });
         StartLobbyHeartBeat();
     }
-    public async void JoinLobbyById(string lobbyID)
+    public async void JoinLobbyById(string lobbyID, string password = null)
     {
-        currentLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobbyID);
+        JoinLobbyByIdOptions options = new JoinLobbyByIdOptions
+        {
+            Player = this.Player
+        };
+        currentLobby = await Lobbies.Instance.JoinLobbyByIdAsync(lobbyID, options);
     }
-    public async void JoinLobbyByCode(string lobbyCode)
+    public async void JoinLobbyByCode(string lobbyCode, string password = null)
     {
-        currentLobby = await Lobbies.Instance.JoinLobbyByCodeAsync(lobbyCode);
+        JoinLobbyByCodeOptions options = new JoinLobbyByCodeOptions
+        {
+            Player = this.Player
+        };
+        currentLobby = await Lobbies.Instance.JoinLobbyByCodeAsync(lobbyCode, options);
     }
     public async void LeaveLobby()
     {
