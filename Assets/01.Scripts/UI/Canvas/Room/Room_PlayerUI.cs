@@ -13,7 +13,15 @@ public class Room_PlayerUI : MonoBehaviour
     [SerializeField] Sprite defaultProfileImage;
     public void DrawUI(Lobby lobby, Player player)
     {
-        playerName.text = player.Profile.Name;
+        if (player == null)
+        {
+            Debug.LogError("Player is null");
+        }
+        if (player.Profile == null)
+        {
+            Debug.LogError("Player Profile is null");
+        }
+        playerName.text = player.Profile?.Name;
         if (player.Data.TryGetValue("profileImage", out PlayerDataObject value))
             playerProfileImage.sprite = GetPlayerProfileImage(value);
         else

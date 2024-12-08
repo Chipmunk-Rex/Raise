@@ -1784,6 +1784,33 @@ MonoBehaviour:
   roomPrefab: {fileID: 4456552352291640216, guid: 231e656430fa4be4cbae8f96569a6903, type: 3}
   roomListContent: {fileID: 577690647}
   searchField: {fileID: 34367609}
+  onJoinLobby:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 848590683}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 848590685}
+        m_TargetAssemblyTypeName: RoomUI, Assembly-CSharp
+        m_MethodName: DrawUI
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &328700920
 GameObject:
   m_ObjectHideFlags: 0

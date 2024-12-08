@@ -14,8 +14,9 @@ public class RoomList_RoomUI : MonoBehaviour
     [SerializeField] TMP_Text roomName;
     [SerializeField] TMP_Text ownerName;
     [SerializeField] TMP_Text playerCount;
-    public event Action OnJoinLobbyBtnClick;
-    public event Action OnOpenLobbyBtnClick;
+    public event Action<Lobby> OnJoinLobbyBtnClick;
+    public event Action<Lobby> OnOpenLobbyBtnClick;
+    private Lobby drawingLobby;
     public void DrawUI(Lobby lobby)
     {
         roomName.text = lobby.Name;
@@ -26,6 +27,7 @@ public class RoomList_RoomUI : MonoBehaviour
         if (lobby.HostId == AuthenticationService.Instance.PlayerId)
             borderImage.color = joinedRoomColor;
 
+        drawingLobby = lobby;
     }
     public string GetOwnerName(Lobby lobby)
     {
@@ -35,10 +37,10 @@ public class RoomList_RoomUI : MonoBehaviour
     }
     public void Join()
     {
-        OnJoinLobbyBtnClick?.Invoke();
+        OnJoinLobbyBtnClick?.Invoke(drawingLobby);
     }
     public void Open()
     {
-        OnOpenLobbyBtnClick?.Invoke();
+        OnOpenLobbyBtnClick?.Invoke(drawingLobby);
     }
 }
