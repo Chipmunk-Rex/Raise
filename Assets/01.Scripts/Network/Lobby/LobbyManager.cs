@@ -17,7 +17,6 @@ public class LobbyManager : MonoSingleton<LobbyManager>
     public string LobbyID => currentLobby?.Id;
     private Lobby currentLobby;
     public Lobby CurrentLobby => currentLobby;
-    private Player player;
     public Player Player { get; set; }
     public async Task<List<Lobby>> GetLobbiesAsync()
     {

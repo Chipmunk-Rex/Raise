@@ -7,10 +7,16 @@ public class LobbyPlayerRegister : MonoBehaviour
 {
     public void RegistePlayer()
     {
-        PlayerProfile playerProfile = new PlayerProfile("Unknown");
-        Player player = new Player(profile: playerProfile);
+        Dictionary<string, PlayerDataObject> data = new(){
+            {"playerData",new PlayerDataObject(PlayerDataObject.VisibilityOptions.Public, "unknown")}
+        };
+
+        LobbyPlayerRegister le = this;
+
+        Player player = new Player(data: data);
         RegistePlayer(player);
     }
+
     public void RegistePlayer(Player player)
     {
         LobbyManager.Instance.Player = player;
