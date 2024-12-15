@@ -17,12 +17,9 @@ public class Room_PlayerUI : MonoBehaviour
         {
             Debug.LogError("Player is null");
         }
-        if (player.Profile == null)
-        {
-            Debug.LogError("Player Profile is null");
-            // ?? fix : Line 20  
-        }
-        playerName.text = player.Profile?.Name;
+
+        playerName.text = player.Data.ContainsKey("PlayerName") ? player.Data["PlayerName"].Value : "Unknown";
+
         if (player.Data.TryGetValue("profileImage", out PlayerDataObject value))
             playerProfileImage.sprite = GetPlayerProfileImage(value);
         else

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Services.Lobbies.Models;
@@ -8,7 +9,7 @@ public class LobbyPlayerRegister : MonoBehaviour
     public void RegistePlayer()
     {
         Dictionary<string, PlayerDataObject> data = new(){
-            {"playerData",new PlayerDataObject(PlayerDataObject.VisibilityOptions.Public, "unknown")}
+            {"PlayerName",new PlayerDataObject(PlayerDataObject.VisibilityOptions.Public, "unknown")}
         };
 
         LobbyPlayerRegister le = this;
