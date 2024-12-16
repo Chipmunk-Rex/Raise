@@ -483,6 +483,7 @@ MonoBehaviour:
   playerName: {fileID: 4958360233599310999}
   playerProfileImage: {fileID: 1038912585728808459}
   defaultProfileImage: {fileID: 21300000, guid: 338e1eac12b32eb4b83338da7e975dde, type: 3}
+  playerReadyText: {fileID: 909102053210049469}
 --- !u!1 &6984985915844357683
 GameObject:
   m_ObjectHideFlags: 0

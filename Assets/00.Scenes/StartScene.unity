@@ -3669,6 +3669,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 665317248}
   m_CullTransparentMesh: 1
+--- !u!1 &675340397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 675340398}
+  - component: {fileID: 675340399}
+  m_Layer: 0
+  m_Name: RelayManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &675340398
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675340397}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 657.8347, y: 614.7877, z: -5.3143415}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &675340399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 675340397}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8b2a3fd443381440a584d935c3efb30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDontDestroy: 0
 --- !u!1 &726944331
 GameObject:
   m_ObjectHideFlags: 0
@@ -4218,6 +4263,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isDontDestroy: 1
   <LobbySettingSO>k__BackingField: {fileID: 11400000, guid: 3ea0160f01e9237419d3cfd1d0d94742, type: 2}
+  loadSceneName: GameScene
 --- !u!4 &829977580
 Transform:
   m_ObjectHideFlags: 0
@@ -4326,7 +4372,7 @@ MonoBehaviour:
   lobbyName: {fileID: 572778789}
   playerUIPrefab: {fileID: 1345730337865985442, guid: 593a0c3e59c6f8646a4b88d2dad4a498, type: 3}
   playerListContent: {fileID: 328700921}
-  readyOrStartBtn: {fileID: 2098350662}
+  readyOrStartBtn: {fileID: 417445597}
 --- !u!1 &856036214
 GameObject:
   m_ObjectHideFlags: 0
@@ -10603,7 +10649,7 @@ GameObject:
   - component: {fileID: 2098350665}
   - component: {fileID: 2098350664}
   m_Layer: 5
-  m_Name: CreateRoom Button
+  m_Name: ReadyOrStartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10673,17 +10719,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 848590683}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 848590685}
+        m_TargetAssemblyTypeName: RoomUI, Assembly-CSharp
+        m_MethodName: OnReadyOrStartBtnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2098350665
 MonoBehaviour:
@@ -11364,3 +11410,4 @@ SceneRoots:
   - {fileID: 829977580}
   - {fileID: 732080091}
   - {fileID: 1696282130}
+  - {fileID: 675340398}

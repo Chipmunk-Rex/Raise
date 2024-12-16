@@ -13,7 +13,7 @@ public class RoomUI : MonoBehaviour
     [SerializeField] TMP_Text lobbyName;
     [SerializeField] Room_PlayerUI playerUIPrefab;
     [SerializeField] Transform playerListContent;
-    [SerializeField] GameObject readyOrStartBtn;
+    [SerializeField] TMP_Text readyOrStartBtn;
 
     private void OnPlayerLeft(List<int> list)
     {
@@ -46,9 +46,20 @@ public class RoomUI : MonoBehaviour
         LobbyEventCallbacks callback = new LobbyEventCallbacks();
         callback.PlayerJoined += OnPlayerJoined;
         callback.PlayerLeft += OnPlayerLeft;
+        callback.LobbyChanged += OnLobbyChanged;
+        callback.PlayerDataChanged += OnPlayerDataChanged;
 
         ILobbyEvents lobbyEvents = await Lobbies.Instance.SubscribeToLobbyEventsAsync(lobbyId, callback);
         this.lobbyEvents = lobbyEvents;
+    }
+
+    private void OnPlayerDataChanged(Dictionary<int, Dictionary<string, ChangedOrRemovedLobbyValue<PlayerDataObject>>> dictionary)
+    {
+        DrawUI(DrawingLobby);
+    }
+
+    private void OnLobbyChanged(ILobbyChanges changes)
+    {
     }
 
     public void DrawUI(Lobby lobby)
@@ -63,15 +74,8 @@ public class RoomUI : MonoBehaviour
 
     private void DrawElements(Lobby lobby)
     {
-        string playerId = AuthenticationService.Instance.PlayerId;
-        string hostId = lobby.HostId;
-        bool isHost = string.Equals(playerId, hostId, StringComparison.Ordinal);
-        Debug.Log(isHost);
-        Debug.Log(lobby.HostId);
-        Debug.Log(lobby.HostId.Length);
-        Debug.Log(AuthenticationService.Instance.PlayerId);
-        Debug.Log(AuthenticationService.Instance.PlayerId.Length);
-        readyOrStartBtn.SetActive(isHost);
+        bool isHost = IsHost(lobby);
+        readyOrStartBtn.text = isHost ? "Start" : "Ready";
     }
 
     private void CreateUI(Lobby lobby)
@@ -89,5 +93,50 @@ public class RoomUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
+    }
+    private bool IsHost(Lobby lobby)
+    {
+        string playerId = AuthenticationService.Instance.PlayerId;
+        string hostId = lobby.HostId;
+        return string.Equals(playerId, hostId, StringComparison.Ordinal);
+    }
+    public async void OnReadyOrStartBtnClick()
+    {
+        if (IsHost(DrawingLobby))
+        {
+            bool isReady = CheckAllPlayersReady(DrawingLobby.HostId);
+
+            if (isReady)
+            {
+                await LobbyManager.Instance.StartLobbyAsync(DrawingLobby.Id);
+            }
+        }
+        else
+        {
+            LobbyManager.Instance.Player.Data["isReady"] = new PlayerDataObject(PlayerDataObject.VisibilityOptions.Member, "true");
+        }
+    }
+
+    private bool CheckAllPlayersReady(string hostId)
+    {
+        bool isReady = true;
+        foreach (Player player in DrawingLobby.Players)
+        {
+            if(player.Id == hostId)
+            {
+                continue;
+            }
+
+            if (player.Data.TryGetValue("isReady", out PlayerDataObject isReadyData))
+            {
+                if (isReadyData.Value != "true")
+                {
+                    isReady = false;
+                    break;
+                }
+            }
+        }
+
+        return isReady;
     }
 }

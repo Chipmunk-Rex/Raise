@@ -11,6 +11,7 @@ public class Room_PlayerUI : MonoBehaviour
     [SerializeField] TMP_Text playerName;
     [SerializeField] Image playerProfileImage;
     [SerializeField] Sprite defaultProfileImage;
+    [SerializeField] TMP_Text playerReadyText;
     public void DrawUI(Lobby lobby, Player player)
     {
         if (player == null)
@@ -28,6 +29,15 @@ public class Room_PlayerUI : MonoBehaviour
         if (lobby.HostId == player.Id)
         {
             playerName.text += " (Host)";
+        }
+
+        if (player.Data.TryGetValue("isReady", out PlayerDataObject isReady))
+        {
+            playerReadyText.text = isReady.Value == "true" ? "Ready" : "Not Ready";
+        }
+        else
+        {
+            playerReadyText.text = "Not Ready";
         }
     }
 
