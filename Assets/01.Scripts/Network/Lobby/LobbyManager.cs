@@ -154,7 +154,6 @@ public class LobbyManager : MonoSingleton<LobbyManager>
             yield return new WaitForSecondsRealtime(LobbySettingSO.heartBeatDuration);
         }
     }
-
     internal async Task StartLobbyAsync(string id)
     {
         Debug.Log("StartLobbyAsync");

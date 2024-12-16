@@ -23,6 +23,7 @@ public class RoomCreateUI : MonoBehaviour
     }
     public void OnSliderValueChanged()
     {
-        maxPlayersText.text = $"{maxPlayers.value}";
+        int maxPlayer = (int)Mathf.Lerp(1, LobbyManager.Instance.LobbySettingSO.maxPlayers, maxPlayers.value);
+        maxPlayersText.text = $"{maxPlayer}";
     }
 }

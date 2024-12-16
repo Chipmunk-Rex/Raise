@@ -11,6 +11,7 @@ public class RoomList_RoomUI : MonoBehaviour
 {
     [SerializeField] Image borderImage;
     [SerializeField] Color joinedRoomColor;
+    [SerializeField] Color maxedRoomColor;
     [SerializeField] TMP_Text roomName;
     [SerializeField] TMP_Text ownerName;
     [SerializeField] TMP_Text playerCount;
@@ -26,6 +27,9 @@ public class RoomList_RoomUI : MonoBehaviour
         Debug.Log($"\n {lobby.HostId} \n {AuthenticationService.Instance.PlayerId}");
         if (lobby.HostId == AuthenticationService.Instance.PlayerId)
             borderImage.color = joinedRoomColor;
+            
+        if (lobby.Players.Count == lobby.MaxPlayers)
+            borderImage.color = maxedRoomColor;
 
         drawingLobby = lobby;
     }

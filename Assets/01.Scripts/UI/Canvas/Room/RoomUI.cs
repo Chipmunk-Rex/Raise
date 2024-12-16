@@ -31,6 +31,8 @@ public class RoomUI : MonoBehaviour
         get => drawingLobby;
         private set
         {
+            if (drawingLobby == value)
+                return;
             if (lobbyEvents != null)
             {
                 lobbyEvents.UnsubscribeAsync();
@@ -71,7 +73,11 @@ public class RoomUI : MonoBehaviour
 
         lobbyName.text = lobby.Name;
     }
-
+    public async void ReDrawUI()
+    {
+        DrawingLobby = await Lobbies.Instance.GetLobbyAsync(DrawingLobby.Id);
+        DrawUI(DrawingLobby);
+    }
     private void DrawElements(Lobby lobby)
     {
         bool isHost = IsHost(lobby);
@@ -122,7 +128,7 @@ public class RoomUI : MonoBehaviour
         bool isReady = true;
         foreach (Player player in DrawingLobby.Players)
         {
-            if(player.Id == hostId)
+            if (player.Id == hostId)
             {
                 continue;
             }
